@@ -5,23 +5,18 @@
  */
 package fi.leevi.project;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author noob9s
+ * @author Lepe
  */
-
 @Controller
-public class DefaultController {
+public class AccountController {
     
-    @GetMapping("*")
-    public String home() {
-        return "frontpage";
+    @GetMapping("/signup")
+    public String signup() {
+        return "signup";
     }
-    
-    
 }
