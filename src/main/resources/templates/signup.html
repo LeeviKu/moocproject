@@ -1,24 +1,23 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head lang="en">
         <meta charset="UTF-8" />
-        <title>Sign up</title>
+        <title>Accounts</title>
     </head>
     <body>
 
-        <h1>Sign up</h1>
-        <form th:action="@{/signup.html}" method="post">  
-            <label for="username">Username</label>  
-            <input type="text" id="username" name="username" autofocus="autofocus" />
-            <label for="password">Password</label>  
-            <input type="password" id="password" name="password" />
-            <label for="name">Name</label>  
-            <input type="text" id="name" name="name" />  
-            <label for="jokunimi">Jokunimi</label>  
-            <input type="text" id="jokunimi" name="jokunimi" />  
-            <input id="signup" type="submit" value="Sign up" />  
+        <h2>Accounts</h2>
+
+        <ol>
+            <li th:each="account : ${accounts}">
+                <span th:text="${account.username}">msg</span>
+            </li>
+        </ol>
+
+        <form method="POST" th:action="@{/signup}">
+            <input type="text" name="username"/>
+            <input type="password" name="password"/>
+            <input type="submit" value="Add new account!"/>
         </form>
-
-
     </body>
 </html>

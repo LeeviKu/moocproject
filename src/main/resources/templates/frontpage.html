@@ -1,14 +1,15 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head lang="en">
         <meta charset="UTF-8" />
-        <title>Reservations</title>
+        <title>Frontpage</title>
     </head>
     <body>
 
-        <h1>Frontpage</h1>
-        <a href="/login">login <a/>
-
-
+        <h2>Frontpage</h2>
+        
+        <form th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout"></input>
+        </form>
     </body>
 </html>

@@ -5,23 +5,18 @@
  */
 package fi.leevi.project;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author noob9s
+ * @author noob9
  */
-
 @Controller
 public class DefaultController {
-    
+
     @GetMapping("*")
-    public String home() {
+    public String handleDefault() {
         return "frontpage";
     }
-    
-    
 }

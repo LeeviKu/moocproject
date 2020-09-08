@@ -1,22 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package fi.leevi.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.Ordered;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ *
+ * @author noob9
+ */
 @SpringBootApplication
-public class ProjectApplication extends WebMvcConfigurerAdapter {
+public class ProjectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProjectApplication.class, args);
-	}
-        
-        @Override
-        public void addViewControllers(ViewControllerRegistry registry) {
-            registry.addViewController("/login").setViewName("customlogin");
-            registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        }
-
+    public static void main(String[] args) {
+        SpringApplication.run(ProjectApplication.class, args);
+    }
 }

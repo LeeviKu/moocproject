@@ -13,17 +13,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  *
- * @author Leevi
+ * @author noob9
  */
- 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account extends AbstractPersistable<Long> {
- 
+public class User extends AbstractPersistable<Long> {
+
     private String username;
     private String password;
-    
-    
+
 }
