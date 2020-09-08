@@ -49,5 +49,10 @@ public class UserController {
         model.addAttribute("person", userRepository.findByPath(path));
         return "profile";
     }
+    
+    @GetMapping("login")
+    public String loginPage() {
+        return "customlogin";
+    }
 
 }
