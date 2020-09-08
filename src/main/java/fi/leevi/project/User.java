@@ -23,5 +23,7 @@ public class User extends AbstractPersistable<Long> {
 
     private String username;
     private String password;
+    private String name;
+    private String path;
 
 }

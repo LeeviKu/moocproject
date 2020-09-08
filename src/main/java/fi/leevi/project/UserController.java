@@ -33,14 +33,14 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String add(@RequestParam String username, @RequestParam String password) {
+    public String add(@RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String path) {
         if (userRepository.findByUsername(username) != null) {
             return "redirect:/signup";
         }
         
-        User user = new User(username, passwordEncoder.encode(password));
+        User user = new User(username, passwordEncoder.encode(password), name, path);
         userRepository.save(user);
-        return "redirect:/signup";
+        return "redirect:/login";
     }
 
 }
