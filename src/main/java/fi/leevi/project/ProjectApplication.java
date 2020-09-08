@@ -5,6 +5,7 @@
  */
 package fi.leevi.project;
 
+import java.util.Properties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

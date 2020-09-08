@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head lang="en">
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
         <meta charset="UTF-8" />
         <title>Accounts</title>
     </head>
     <body>
-        <form method="POST" th:action="@{/signup}">
+        <form class="signup" method="POST" th:action="@{/signup}">
             <h2>Username</h2>
             <input type="text" name="username"/>
             <h2>Password</h2>
@@ -15,7 +16,7 @@
             <h2>profile path</h2>
             <input type="text" name="path"/>
             <br/>
-            <input type="submit" value="Create an account"/>
+            <input id="createaccount" type="submit" value="Create an account"/>
         </form>
     </body>
 </html>
