@@ -5,13 +5,10 @@
  */
 package fi.leevi.project;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -23,13 +20,10 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractPersistable<Long> {
-
-    private String username;
-    private String password;
-    private String name;
-    private String path;
-    @OneToMany(mappedBy = "sender")
-    private List<Friendship> friends = new ArrayList<>();
-
+public class Friendship extends AbstractPersistable<Long> {
+    
+    @ManyToOne
+    private User sender;
+    private boolean friends = false;
+    
 }

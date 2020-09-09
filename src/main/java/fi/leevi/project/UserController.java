@@ -6,6 +6,7 @@
 package fi.leevi.project;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,7 +50,8 @@ public class UserController {
             return "redirect:/signup";
         }
         
-        User user = new User(username, passwordEncoder.encode(password), name, path);
+        User user = new User(username, passwordEncoder.encode(password), name,
+                path, new ArrayList<>());
         userRepository.save(user);
         return "redirect:/login";
     }
