@@ -8,14 +8,22 @@ and open the template in the editor.
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <link rel="stylesheet" th:href="@{/css/style.css}" />
-        <title>Profile</title>
+        <title>Header</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div th:replace="fragments/header :: header"></div>
-        
-        <div><span th:text="${person != null} ? ${person.name} :
-                   'no such a profile'">name</span></div>
+        <div class="header" th:fragment="header">
+            <a href="/">Home</a>
+            <span sec:authorize="isAnonymous()">
+                <a href="/signup">Sign up</a>
+                <a href="/login">Login</a>
+            </span>
+            <span sec:authorize="isAuthenticated()">
+                <a href="/friends">Friend list</a>
+                <a th:href="@{/profile/{currentUserPath}(currentUserPath=${currentUserPath})}">Profile</a>
+                <a href="/logout">Logout</a>
+            </span>
+        </div>
     </body>
 </html>

@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head lang="en">
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
         <meta charset="UTF-8" />
         <title>Frontpage</title>
     </head>
     <body>
-
-        <h2>Frontpage</h2>
-        
-        <form th:action="@{/logout}" method="POST">
-            <input type="submit" value="Logout"></input>
-        </form>
+        <div th:replace="fragments/header :: header"></div>
+        <div></div>
     </body>
 </html>

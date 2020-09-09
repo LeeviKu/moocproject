@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  *
@@ -35,11 +36,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().sameOrigin();
 
         http.authorizeRequests()
-                .antMatchers("/signup","/signup/**", "/css/**").permitAll()
+                .antMatchers("/signup","/signup/**", "/css/**", "/").permitAll()
                 .antMatchers("/h2-console","/h2-console/**").permitAll()
                 .anyRequest().authenticated().and()
-                .formLogin().loginPage("/login").permitAll().and()
-                .logout().permitAll();
+                .formLogin().loginPage("/login")
+                .permitAll().defaultSuccessUrl("/", true).permitAll().and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
+                .permitAll();
        
     }
 

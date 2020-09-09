@@ -5,7 +5,9 @@
  */
 package fi.leevi.project;
 
+import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,14 @@ public class UserController {
     public String list(Model model) {
         model.addAttribute("accounts", userRepository.findAll());
         return "signup";
+    }
+    
+    @GetMapping("/")
+    public String frontpage(Model model, Principal princibal) {
+        if (princibal != null) {
+            model.addAttribute("currentUserPath", userRepository.findByUsername(princibal.getName()).getPath());   
+        }
+        return "frontpage";
     }
 
     @PostMapping("/signup")

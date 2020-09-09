@@ -17,6 +17,6 @@ public class DefaultController {
 
     @GetMapping("*")
     public String handleDefault() {
-        return "frontpage";
+        return "redirect:/";
     }
 }
