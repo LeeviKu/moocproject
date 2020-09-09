@@ -64,5 +64,10 @@ public class UserController {
     public String loginPage() {
         return "customlogin";
     }
+    
+    @GetMapping("friends")
+    public String friendsPage() {
+        return "friends";
+    } 
 
 }
