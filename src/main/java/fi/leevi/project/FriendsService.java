@@ -57,8 +57,17 @@ public class FriendsService {
         ArrayList<Friends> list = (ArrayList) friendsRepository.
                 findByReciever(userRepository.
                         findByUsername(auth.getUsername()));
+        ArrayList<Friends> list2 = (ArrayList) friendsRepository.
+                findBySender(userRepository.
+                        findByUsername(auth.getUsername()));
         ArrayList<Friends> friends = new ArrayList<>();
         for (Friends friend : list) {
+            if (friend.isFriends()) {
+                friends.add(friend);
+            }
+        }
+        
+        for (Friends friend : list2) {
             if (friend.isFriends()) {
                 friends.add(friend);
             }
