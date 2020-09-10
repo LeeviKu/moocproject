@@ -49,6 +49,7 @@ public class FriendsController {
     public String searchFriend(@RequestParam String name, Model model) {
         System.out.println(name);
         if (userRepository.findByName(name) != null) {
+            // validate that retunrns boolean that indicates can you add or no
             model.addAttribute("searchresult", userRepository.findByName(name));
         }
         friendsService.friendRequests(model);
@@ -65,6 +66,7 @@ public class FriendsController {
         User sender = userRepository.findByUsername(auth.getUsername());
         friend.setReciever(reciever);
         friend.setSender(sender);
+        //validate so that you cant add same friend through link 
         friendsRepository.save(friend);
         
         return "redirect:/friends";
