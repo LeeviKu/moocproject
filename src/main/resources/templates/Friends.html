@@ -28,7 +28,8 @@ and open the template in the editor.
                 </a>
             </div>
             <div>
-                <form method="POST" th:action="@{/friends/add}">
+                <form method="POST" th:action="@{/friends/add/{searchresult.name}
+                   (searchresult.name=${searchresult.name})}">
                     <input type="submit" value="add"/>
                 </form>
             </div>
