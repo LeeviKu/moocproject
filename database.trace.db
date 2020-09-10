@@ -1,3 +1,0 @@
-2020-09-09 21:09:15 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM *[*]"; expected "identifier"; SQL statement:
-SELECT * FROM * [42001-197]

@@ -16,9 +16,9 @@ and open the template in the editor.
         <div th:replace="fragments/header :: header"></div>
         <form method="POST" th:action="@{/friends}">
             <h2>Username</h2>
-            <input type="text" name="username"/>
+            <input type="text" name="name"/>
             <input type="submit" value="search"/>
         </form>
-        <div th:text="${searchresult}">searchresult</div>
+        <div th:if="${searchresult != null}"><a th:href="@{/profile/{searchresult.path}(searchresult.path=${searchresult.path})}" th:text="${searchresult.name}">searchresult</a></div>
     </body>
 </html>

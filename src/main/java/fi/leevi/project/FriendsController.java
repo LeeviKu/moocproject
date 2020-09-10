@@ -28,12 +28,11 @@ public class FriendsController {
     }
     
     @PostMapping("/friends")
-    public String searchFriend(@RequestParam String username, Model model) {
-        if (userRepository.findByUsername(username) != null) {
-            model.addAttribute("searchresult", userRepository.findByUsername(username).getName());
-            System.out.print(userRepository.findByUsername(username).getName());
-        } else {
-            model.addAttribute("searchresult", "nothing");
+    public String searchFriend(@RequestParam String name, Model model) {
+        System.out.println(name);
+        if (userRepository.findByName(name) != null) {
+            model.addAttribute("searchresult", userRepository.findByName(name));
+            System.out.print(userRepository.findByName(name).getName());
         }
         return "friends";
     }
