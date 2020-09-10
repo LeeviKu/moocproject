@@ -12,6 +12,53 @@ and open the template in the editor.
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <body>
+    <body class="friends">
+                
+        <div th:replace="fragments/header :: header"></div>
+        <div th:if="${friendRequests != null}">
+        <h1>Friend requests</h1>
+        <ul>
+            <li th:each="friendrequest : ${friendRequests}">
+                <a th:href="@{/../profile/{name}(name=${friendrequest.sender.path})}">
+                    <span th:text="${friendrequest.sender.name}"></span>
+                </a>
+                <form method="POST" th:action="@{/friends/accept/{name}
+                   (name=${friendrequest.sender.name})}">
+                    <input type="submit" value="add"/>
+                </form>
+            </li>
+        </ul>
+        </div>
+        <form method="POST" th:action="@{/friends}">
+            <h2>Username</h2>
+            <input type="text" name="name"/>
+            <input type="submit" value="search"/>
+        </form>
+        <div th:if="${searchresult != null}">
+            <div>
+                <a th:href="@{/profile/{searchresult.path}
+                   (searchresult.path=${searchresult.path})}" 
+                   th:text="${searchresult.name}">
+                    searchresult
+                </a>
+            </div>
+            <div>
+                <form method="POST" th:action="@{/friends/add/{searchresult.name}
+                   (searchresult.name=${searchresult.name})}">
+                    <input type="submit" value="add"/>
+                </form>
+            </div>
+        </div>
+        
+        <div th:if="${friends != null}">
+            <h1>Friends</h1>
+            <ul>
+                <li th:each="friends : ${friends}">
+                    <a th:href="@{/../profile/{name}(name=${friends.path})}">
+                        <span th:text="${friends.name}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </body>
 </html>
