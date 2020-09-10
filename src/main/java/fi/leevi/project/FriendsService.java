@@ -39,4 +39,8 @@ public class FriendsService {
         }
         model.addAttribute("friendRequests", friendRequests);
     }
+    
+    public void acceptFriend() {
+        
+    }
 }

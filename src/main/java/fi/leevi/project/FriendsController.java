@@ -60,4 +60,10 @@ public class FriendsController {
         
         return "redirect:/friends";
     }
+    
+    @PostMapping("/friends/accept/{name}")
+    public String acceptFriend(@PathVariable String name) {
+        friendsService.acceptFriend();
+        return "friends";
+    }
 }
