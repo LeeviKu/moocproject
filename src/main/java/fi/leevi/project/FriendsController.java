@@ -5,6 +5,7 @@
  */
 package fi.leevi.project;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,10 +31,15 @@ public class FriendsController {
     @Autowired
     FriendsRepository friendsRepository;
     
-    @Autowired FriendsService friendsService;
+    @Autowired
+    FriendsService friendsService;
+    
+    @Autowired
+    UserService userService;
     
     @GetMapping("/friends")
-    public String friendsPage(Model model) {
+    public String friendsPage(Model model, Principal principal) {
+        userService.headerLinks(principal, model);
         friendsService.friendRequests(model);
         friendsService.friends(model);
         return "friends";
