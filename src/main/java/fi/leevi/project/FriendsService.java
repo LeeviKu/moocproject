@@ -49,4 +49,8 @@ public class FriendsService {
            }
        }
     }
+    
+    public void friends(Model model) {
+        
+    }
 }

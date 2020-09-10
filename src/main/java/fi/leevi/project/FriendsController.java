@@ -35,6 +35,7 @@ public class FriendsController {
     @GetMapping("/friends")
     public String friendsPage(Model model) {
         friendsService.friendRequests(model);
+        friendsService.friends(model);
         return "friends";
     }
     
