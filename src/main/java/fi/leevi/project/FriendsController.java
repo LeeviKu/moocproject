@@ -5,7 +5,11 @@
  */
 package fi.leevi.project;
 
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +27,14 @@ public class FriendsController {
     @Autowired
     UserRepository userRepository;
     
+    @Autowired
+    FriendsRepository friendsRepository;
+    
+    @Autowired FriendsService friendsService;
+    
     @GetMapping("/friends")
-    public String friendsPage() {
+    public String friendsPage(Model model) {
+        friendsService.friendRequests(model);
         return "friends";
     }
     
@@ -39,7 +49,15 @@ public class FriendsController {
     
     @PostMapping("/friends/add/{name}")
     public String addFriend(@PathVariable String name) {
-        System.out.println(name);
+        UserDetails auth = (UserDetails) SecurityContextHolder.
+                getContext().getAuthentication().getPrincipal();
+        Friends friend = new Friends();
+        User reciever = userRepository.findByName(name);
+        User sender = userRepository.findByUsername(auth.getUsername());
+        friend.setReciever(reciever);
+        friend.setSender(sender);
+        friendsRepository.save(friend);
+        
         return "redirect:/friends";
     }
 }
