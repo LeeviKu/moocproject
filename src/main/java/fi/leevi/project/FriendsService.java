@@ -60,16 +60,16 @@ public class FriendsService {
         ArrayList<Friends> list2 = (ArrayList) friendsRepository.
                 findBySender(userRepository.
                         findByUsername(auth.getUsername()));
-        ArrayList<Friends> friends = new ArrayList<>();
+        ArrayList<User> friends = new ArrayList<>();
         for (Friends friend : list) {
             if (friend.isFriends()) {
-                friends.add(friend);
+                friends.add(friend.getReciever());
             }
         }
         
         for (Friends friend : list2) {
             if (friend.isFriends()) {
-                friends.add(friend);
+                friends.add(friend.getSender());
             }
         }
         model.addAttribute("friends", friends);
