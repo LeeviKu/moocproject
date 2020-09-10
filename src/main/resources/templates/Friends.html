@@ -21,6 +21,10 @@ and open the template in the editor.
                 <a th:href="@{/../profile/{name}(name=${friendrequest.sender.path})}">
                     <span th:text="${friendrequest.sender.name}"></span>
                 </a>
+                <form method="POST" th:action="@{/friends/accept/{name}
+                   (name=${friendrequest.sender.name})}">
+                    <input type="submit" value="add"/>
+                </form>
             </li>
         </ul>
         </div>
