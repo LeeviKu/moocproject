@@ -63,13 +63,13 @@ public class FriendsService {
         ArrayList<User> friends = new ArrayList<>();
         for (Friends friend : list) {
             if (friend.isFriends()) {
-                friends.add(friend.getReciever());
+                friends.add(friend.getSender());
             }
         }
         
         for (Friends friend : list2) {
             if (friend.isFriends()) {
-                friends.add(friend.getSender());
+                friends.add(friend.getReciever());
             }
         }
         model.addAttribute("friends", friends);

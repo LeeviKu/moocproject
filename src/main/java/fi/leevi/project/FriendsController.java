@@ -45,6 +45,8 @@ public class FriendsController {
         if (userRepository.findByName(name) != null) {
             model.addAttribute("searchresult", userRepository.findByName(name));
         }
+        friendsService.friendRequests(model);
+        friendsService.friends(model);
         return "friends";
     }
     
@@ -59,7 +61,7 @@ public class FriendsController {
         friend.setSender(sender);
         friendsRepository.save(friend);
         
-        return "friends";
+        return "redirect:/friends";
     }
     
     @PostMapping("/friends/accept/{name}")

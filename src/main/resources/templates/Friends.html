@@ -49,12 +49,12 @@ and open the template in the editor.
             </div>
         </div>
         
-        <div th:if="${friendRequests != null}">
+        <div th:if="${friends != null}">
             <h1>Friends</h1>
             <ul>
                 <li th:each="friends : ${friends}">
-                    <a th:href="@{/../profile/{name}(name=${friends.sender.path})}">
-                        <span th:text="${friends.sender.name}"></span>
+                    <a th:href="@{/../profile/{name}(name=${friends.path})}">
+                        <span th:text="${friends.name}"></span>
                     </a>
                 </li>
             </ul>
