@@ -59,7 +59,7 @@ public class FriendsController {
         friend.setSender(sender);
         friendsRepository.save(friend);
         
-        return "redirect:/friends";
+        return "friends";
     }
     
     @PostMapping("/friends/accept/{name}")
@@ -67,6 +67,6 @@ public class FriendsController {
         UserDetails auth = (UserDetails) SecurityContextHolder.
         getContext().getAuthentication().getPrincipal();
         friendsService.acceptFriend(name, auth);
-        return "friends";
+        return "redirect:/friends";
     }
 }

@@ -41,16 +41,29 @@ public class FriendsService {
     }
     
     public void acceptFriend(String name, UserDetails user) {
-       ArrayList<Friends> list = (ArrayList) friendsRepository.findByReciever(userRepository.findByName(name));
-       User currentUser = userRepository.findByUsername(user.getUsername());
+       ArrayList<Friends> list = (ArrayList) friendsRepository.findByReciever(userRepository.findByUsername(user.getUsername()));
+       User whoToAccept = userRepository.findByName(name);
        for (Friends friend : list) {
-           if (friend.getSender() == currentUser) {
+           if (friend.getSender() == whoToAccept) {
                friend.setFriends(true);
+               friendsRepository.save(friend);
            }
        }
     }
     
     public void friends(Model model) {
-        
+        UserDetails auth = (UserDetails) SecurityContextHolder.
+        getContext().getAuthentication().getPrincipal();
+        ArrayList<Friends> list = (ArrayList) friendsRepository.
+                findByReciever(userRepository.
+                        findByUsername(auth.getUsername()));
+        ArrayList<Friends> friends = new ArrayList<>();
+        for (Friends friend : list) {
+            if (friend.isFriends()) {
+                friends.add(friend);
+            }
+        }
+        model.addAttribute("friends", friends);
+        System.out.println(friends);
     }
 }

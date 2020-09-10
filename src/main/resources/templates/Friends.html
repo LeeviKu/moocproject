@@ -15,7 +15,7 @@ and open the template in the editor.
                 
         <div th:replace="fragments/header :: header"></div>
         <div th:if="${friendRequests != null}">
-        <h1>Result</h1>
+        <h1>Friend requests</h1>
         <ul>
             <li th:each="friendrequest : ${friendRequests}">
                 <a th:href="@{/../profile/{name}(name=${friendrequest.sender.path})}">
@@ -47,6 +47,17 @@ and open the template in the editor.
                     <input type="submit" value="add"/>
                 </form>
             </div>
+        </div>
+        
+        <div th:if="${friendRequests != null}">
+            <h1>Friends</h1>
+            <ul>
+                <li th:each="friends : ${friends}">
+                    <a th:href="@{/../profile/{name}(name=${friends.sender.path})}">
+                        <span th:text="${friends.sender.name}"></span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </body>
 </html>
