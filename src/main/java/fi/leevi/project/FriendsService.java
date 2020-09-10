@@ -40,7 +40,13 @@ public class FriendsService {
         model.addAttribute("friendRequests", friendRequests);
     }
     
-    public void acceptFriend() {
-        
+    public void acceptFriend(String name, UserDetails user) {
+       ArrayList<Friends> list = (ArrayList) friendsRepository.findByReciever(userRepository.findByName(name));
+       User currentUser = userRepository.findByUsername(user.getUsername());
+       for (Friends friend : list) {
+           if (friend.getSender() == currentUser) {
+               friend.setFriends(true);
+           }
+       }
     }
 }

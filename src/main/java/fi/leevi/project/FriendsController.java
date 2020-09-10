@@ -63,7 +63,9 @@ public class FriendsController {
     
     @PostMapping("/friends/accept/{name}")
     public String acceptFriend(@PathVariable String name) {
-        friendsService.acceptFriend();
+        UserDetails auth = (UserDetails) SecurityContextHolder.
+        getContext().getAuthentication().getPrincipal();
+        friendsService.acceptFriend(name, auth);
         return "friends";
     }
 }
