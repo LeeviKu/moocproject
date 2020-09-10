@@ -19,6 +19,19 @@ and open the template in the editor.
             <input type="text" name="name"/>
             <input type="submit" value="search"/>
         </form>
-        <div th:if="${searchresult != null}"><a th:href="@{/profile/{searchresult.path}(searchresult.path=${searchresult.path})}" th:text="${searchresult.name}">searchresult</a></div>
+        <div th:if="${searchresult != null}">
+            <div>
+                <a th:href="@{/profile/{searchresult.path}
+                   (searchresult.path=${searchresult.path})}" 
+                   th:text="${searchresult.name}">
+                    searchresult
+                </a>
+            </div>
+            <div>
+                <form method="POST" th:action="@{/friends/add}">
+                    <input type="submit" value="add"/>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

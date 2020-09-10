@@ -36,4 +36,10 @@ public class FriendsController {
         }
         return "friends";
     }
+    
+    @PostMapping("/friends/add")
+    public String addFriend() {
+        System.out.println("added");
+        return "redirect:/friends";
+    }
 }
