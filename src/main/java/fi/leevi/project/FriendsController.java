@@ -39,6 +39,9 @@ public class FriendsController {
     
     @GetMapping("/friends")
     public String friendsPage(Model model, Principal principal) {
+        userService.headerLinks(principal, model);
+        friendsService.friendRequests(model);
+        friendsService.friends(model);
         return "friends";
     }
     
