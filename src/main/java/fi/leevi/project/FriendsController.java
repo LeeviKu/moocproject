@@ -47,7 +47,6 @@ public class FriendsController {
     
     @PostMapping("/friends")
     public String searchFriend(@RequestParam String name, Model model) {
-        System.out.println(name);
         if (userRepository.findByName(name) != null) {
             // validate that retunrns boolean that indicates can you add or no
             model.addAttribute("searchresult", userRepository.findByName(name));

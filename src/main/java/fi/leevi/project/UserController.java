@@ -52,7 +52,7 @@ public class UserController {
         }
         
         User user = new User(username, passwordEncoder.encode(password), name,
-                path, new ArrayList<>());
+                path);
         userRepository.save(user);
         return "redirect:/login";
     }

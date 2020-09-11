@@ -73,6 +73,5 @@ public class FriendsService {
             }
         }
         model.addAttribute("friends", friends);
-        System.out.println(friends);
     }
 }

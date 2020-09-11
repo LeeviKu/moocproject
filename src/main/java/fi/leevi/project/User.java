@@ -32,14 +32,6 @@ public class User extends AbstractPersistable<Long> {
     private String password;
     private String name;
     private String path;
-    @ManyToMany
-    private List<Friends> friends = new ArrayList<>();
     
-    public User(String username, String password, String name, String path) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.path = path;
-    }
 
 }
