@@ -6,6 +6,7 @@
 package fi.leevi.project;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,7 +51,7 @@ public class FriendsService {
        }
     }
     
-    public void friends(Model model, User currentUser) {
+    public List<User> friends(Model model, User currentUser) {
         ArrayList<Friends> list = (ArrayList) friendsRepository.
                 findByReciever(currentUser);
         ArrayList<Friends> list2 = (ArrayList) friendsRepository.
@@ -69,6 +70,7 @@ public class FriendsService {
             }
         }
         model.addAttribute("friends", friends);
+        return friends;
     }
     
     public boolean validateSearch(User searchedUser, User currentUser) {
