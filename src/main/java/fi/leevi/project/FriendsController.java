@@ -8,6 +8,7 @@ package fi.leevi.project;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -69,6 +70,7 @@ public class FriendsController {
         return "friends";
     }
     
+    @Transactional
     @PostMapping("/friends/add/{name}")
     public String addFriend(@PathVariable String name, Principal principal) {
         
