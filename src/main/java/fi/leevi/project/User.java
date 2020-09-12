@@ -38,7 +38,7 @@ public class User extends AbstractPersistable<Long> {
     
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    private byte[] content;
+    private byte[] profilePicture;
     
     public User(String username, String password, String name, String path) {
         this.username = username;
