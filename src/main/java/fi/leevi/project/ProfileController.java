@@ -28,7 +28,7 @@ public class ProfileController {
     UserRepository userRepository;
     
     @PostMapping("/profile/{path}")
-    public String addFile(@RequestParam("file") MultipartFile file,
+    public String addProfilePicture(@RequestParam("file") MultipartFile file,
             Principal principal, Model model, @PathVariable String path) throws IOException {
         
         if (file != null) {
@@ -49,14 +49,19 @@ public class ProfileController {
     }
     
     @GetMapping("profile/{path}")
-    public String profile(@PathVariable String path, Model model) {
-        User profileOwner = userRepository.findByPath(path);
-        model.addAttribute("person", profileOwner);
+    public String profile(@PathVariable String path, Model model, Principal principal) {
         
-        if (profileOwner.getProfilePicture() != null) {
-            model.addAttribute("profilepicture", Base64.getEncoder().
-                    encodeToString(profileOwner.getProfilePicture())); 
+        if (userRepository.findByPath(path) != null) {
+            User profileOwner = userRepository.findByPath(path);
+            
+            if (profileOwner.getProfilePicture() != null) {
+                model.addAttribute("profilepicture", Base64.getEncoder().
+                        encodeToString(profileOwner.getProfilePicture()));
+            
+                model.addAttribute("person", profileOwner);
+            }   
         }
+        
         return "profile";
     }
 }

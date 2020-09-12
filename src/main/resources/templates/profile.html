@@ -24,10 +24,11 @@ and open the template in the editor.
         <div th:if="${profilepicture != null}" class="profilepicture">
             <img th:src="*{'data:image/png;base64,'+profilepicture}" alt="" />
         </div>
-        
-        <form method="POST" th:action="@{/profile/{path}(path=${person.path})}" enctype="multipart/form-data">
-            <input type="file" name="file" id="file"/>
-            <input type="submit" value="Change profile picture"/>
-        </form>
+        <div th:if="${person != null}">
+            <form method="POST" th:action="@{/profile/{path}(path=${person.path})}" enctype="multipart/form-data">
+                <input type="file" name="file" id="file"/>
+                <input type="submit" value="Change profile picture"/>
+            </form>
+        </div>
     </body>
 </html>
