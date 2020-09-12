@@ -53,12 +53,13 @@ public class FriendsController {
         User currentUser = userRepository.findByUsername(principal.getName());
         User searchedUser  = userRepository.findByName(name);
         List<User> friends = friendsService.friends(model, currentUser);
+        List<Friends> friendRequests = friendsService.
+                friendRequests(model, currentUser);
         if (searchedUser != null) {
             model.addAttribute("notAFriend", friendsService.
                 validateSearch(searchedUser, currentUser, friends));
             model.addAttribute("searchresult", searchedUser);
         }
-        friendsService.friendRequests(model, currentUser);
         return "friends";
     }
     

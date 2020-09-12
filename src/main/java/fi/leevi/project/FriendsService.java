@@ -26,16 +26,17 @@ public class FriendsService {
     @Autowired
     FriendsRepository friendsRepository;
     
-    public void friendRequests(Model model, User currentUser) {
-        ArrayList<Friends> list = (ArrayList) friendsRepository.
+    public List<Friends> friendRequests(Model model, User currentUser) {
+        List<Friends> list = friendsRepository.
                 findByReciever(currentUser);
-        ArrayList<Friends> friendRequests = new ArrayList<>();
+        List<Friends> friendRequests = new ArrayList<>();
         for (Friends friend : list) {
             if (!friend.isFriends()) {
                 friendRequests.add(friend);
             }
         }
         model.addAttribute("friendRequests", friendRequests);
+        return friendRequests;
     }
     
     public void acceptFriend(String name, User currentUser) {
