@@ -70,4 +70,12 @@ public class FriendsService {
         }
         model.addAttribute("friends", friends);
     }
+    
+    public boolean validateSearch(User searchedUser, User currentUser) {
+        if (searchedUser == currentUser) {
+            return false;
+        }
+        
+        return true;
+    }
 }

@@ -50,9 +50,10 @@ public class FriendsController {
     public String searchFriend(@RequestParam String name, Model model,
             Principal principal) {
         User currentUser = userRepository.findByUsername(principal.getName());
-        if (userRepository.findByName(name) != null) {
-            // validate that retunrns boolean that indicates can you add or no
-            model.addAttribute("searchresult", userRepository.findByName(name));
+        User searchedUser  = userRepository.findByName(name);
+        if (searchedUser != null && friendsService.
+                validateSearch(searchedUser, currentUser)) {
+            model.addAttribute("searchresult", searchedUser);
         }
         friendsService.friendRequests(model, currentUser);
         friendsService.friends(model, currentUser);
