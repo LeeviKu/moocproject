@@ -40,31 +40,38 @@ public class FriendsController {
     
     @GetMapping("/friends")
     public String friendsPage(Model model, Principal principal) {
+        
         User currentUser = userRepository.findByUsername(principal.getName());
         userService.headerLinks(principal, model, currentUser);
         friendsService.friendRequests(model, currentUser);
         friendsService.friends(model, currentUser);
+        
         return "friends";
     }
     
     @PostMapping("/friends")
     public String searchFriend(@RequestParam String name, Model model,
             Principal principal) {
+        
         User currentUser = userRepository.findByUsername(principal.getName());
         User searchedUser  = userRepository.findByName(name);
         List<User> friends = friendsService.friends(model, currentUser);
         List<Friends> friendRequests = friendsService.
                 friendRequests(model, currentUser);
+        
         if (searchedUser != null) {
             model.addAttribute("notAFriend", friendsService.
-                validateSearch(searchedUser, currentUser, friends));
+                validateSearch(searchedUser, currentUser, friends,
+                        friendRequests));
             model.addAttribute("searchresult", searchedUser);
         }
+        
         return "friends";
     }
     
     @PostMapping("/friends/add/{name}")
     public String addFriend(@PathVariable String name, Principal principal) {
+        
         Friends friend = new Friends();
         User reciever = userRepository.findByName(name);
         User sender = userRepository.findByUsername(principal.getName());
@@ -80,6 +87,7 @@ public class FriendsController {
     public String acceptFriend(@PathVariable String name, Principal principal) {
         User currentUser = userRepository.findByUsername(principal.getName());
         friendsService.acceptFriend(name, currentUser);
+        
         return "redirect:/friends";
     }
 }
