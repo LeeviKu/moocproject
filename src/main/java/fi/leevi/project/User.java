@@ -7,9 +7,12 @@ package fi.leevi.project;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -33,5 +36,15 @@ public class User extends AbstractPersistable<Long> {
     private String name;
     private String path;
     
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] content;
+    
+    public User(String username, String password, String name, String path) {
+        this.username = username;
+        this.name = name;
+        this.password = password;
+        this.path = path;
+    }
 
 }
