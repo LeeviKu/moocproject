@@ -73,9 +73,16 @@ public class FriendsService {
         return friends;
     }
     
-    public boolean validateSearch(User searchedUser, User currentUser) {
+    public boolean validateSearch(User searchedUser, User currentUser,
+            List<User> friends) {
         if (searchedUser == currentUser) {
             return false;
+        }
+        
+        for (User user : friends) {
+            if (searchedUser == user) {
+                return false;
+            }
         }
         
         return true;

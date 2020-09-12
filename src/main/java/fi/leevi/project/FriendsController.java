@@ -7,6 +7,7 @@ package fi.leevi.project;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -51,12 +52,13 @@ public class FriendsController {
             Principal principal) {
         User currentUser = userRepository.findByUsername(principal.getName());
         User searchedUser  = userRepository.findByName(name);
-        if (searchedUser != null && friendsService.
-                validateSearch(searchedUser, currentUser)) {
+        List<User> friends = friendsService.friends(model, currentUser);
+        if (searchedUser != null) {
+            model.addAttribute("notAFriend", friendsService.
+                validateSearch(searchedUser, currentUser, friends));
             model.addAttribute("searchresult", searchedUser);
         }
         friendsService.friendRequests(model, currentUser);
-        friendsService.friends(model, currentUser);
         return "friends";
     }
     

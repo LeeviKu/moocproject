@@ -45,7 +45,12 @@ and open the template in the editor.
             <div>
                 <form method="POST" th:action="@{/friends/add/{searchresult.name}
                    (searchresult.name=${searchresult.name})}">
+                    <div th:if="${notAFriend}">
                     <input type="submit" value="add"/>
+                    </div>
+                    <div th:if="${!notAFriend}">
+                        <input type="submit" value="add" disabled=""/>
+                    </div>
                 </form>
             </div>
         </div>
