@@ -39,30 +39,31 @@ public class FriendsController {
     
     @GetMapping("/friends")
     public String friendsPage(Model model, Principal principal) {
-        userService.headerLinks(principal, model);
-        friendsService.friendRequests(model);
-        friendsService.friends(model);
+        User currentUser = userRepository.findByUsername(principal.getName());
+        userService.headerLinks(principal, model, currentUser);
+        friendsService.friendRequests(model, currentUser);
+        friendsService.friends(model, currentUser);
         return "friends";
     }
     
     @PostMapping("/friends")
-    public String searchFriend(@RequestParam String name, Model model) {
+    public String searchFriend(@RequestParam String name, Model model,
+            Principal principal) {
+        User currentUser = userRepository.findByUsername(principal.getName());
         if (userRepository.findByName(name) != null) {
             // validate that retunrns boolean that indicates can you add or no
             model.addAttribute("searchresult", userRepository.findByName(name));
         }
-        friendsService.friendRequests(model);
-        friendsService.friends(model);
+        friendsService.friendRequests(model, currentUser);
+        friendsService.friends(model, currentUser);
         return "friends";
     }
     
     @PostMapping("/friends/add/{name}")
-    public String addFriend(@PathVariable String name) {
-        UserDetails auth = (UserDetails) SecurityContextHolder.
-                getContext().getAuthentication().getPrincipal();
+    public String addFriend(@PathVariable String name, Principal principal) {
         Friends friend = new Friends();
         User reciever = userRepository.findByName(name);
-        User sender = userRepository.findByUsername(auth.getUsername());
+        User sender = userRepository.findByUsername(principal.getName());
         friend.setReciever(reciever);
         friend.setSender(sender);
         //validate so that you cant add same friend through link 
@@ -72,10 +73,9 @@ public class FriendsController {
     }
     
     @PostMapping("/friends/accept/{name}")
-    public String acceptFriend(@PathVariable String name) {
-        UserDetails auth = (UserDetails) SecurityContextHolder.
-        getContext().getAuthentication().getPrincipal();
-        friendsService.acceptFriend(name, auth);
+    public String acceptFriend(@PathVariable String name, Principal principal) {
+        User currentUser = userRepository.findByUsername(principal.getName());
+        friendsService.acceptFriend(name, currentUser);
         return "redirect:/friends";
     }
 }

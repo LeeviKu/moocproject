@@ -25,12 +25,9 @@ public class FriendsService {
     @Autowired
     FriendsRepository friendsRepository;
     
-    public void friendRequests(Model model) {
-        UserDetails auth = (UserDetails) SecurityContextHolder.
-                getContext().getAuthentication().getPrincipal();
+    public void friendRequests(Model model, User currentUser) {
         ArrayList<Friends> list = (ArrayList) friendsRepository.
-                findByReciever(userRepository.
-                        findByUsername(auth.getUsername()));
+                findByReciever(currentUser);
         ArrayList<Friends> friendRequests = new ArrayList<>();
         for (Friends friend : list) {
             if (!friend.isFriends()) {
@@ -40,9 +37,11 @@ public class FriendsService {
         model.addAttribute("friendRequests", friendRequests);
     }
     
-    public void acceptFriend(String name, UserDetails user) {
-       ArrayList<Friends> list = (ArrayList) friendsRepository.findByReciever(userRepository.findByUsername(user.getUsername()));
+    public void acceptFriend(String name, User currentUser) {
+       ArrayList<Friends> list = (ArrayList) friendsRepository.
+               findByReciever(currentUser);
        User whoToAccept = userRepository.findByName(name);
+       
        for (Friends friend : list) {
            if (friend.getSender() == whoToAccept) {
                friend.setFriends(true);
@@ -51,16 +50,13 @@ public class FriendsService {
        }
     }
     
-    public void friends(Model model) {
-        UserDetails auth = (UserDetails) SecurityContextHolder.
-        getContext().getAuthentication().getPrincipal();
+    public void friends(Model model, User currentUser) {
         ArrayList<Friends> list = (ArrayList) friendsRepository.
-                findByReciever(userRepository.
-                        findByUsername(auth.getUsername()));
+                findByReciever(currentUser);
         ArrayList<Friends> list2 = (ArrayList) friendsRepository.
-                findBySender(userRepository.
-                        findByUsername(auth.getUsername()));
+                findBySender(currentUser);
         ArrayList<User> friends = new ArrayList<>();
+        
         for (Friends friend : list) {
             if (friend.isFriends()) {
                 friends.add(friend.getSender());

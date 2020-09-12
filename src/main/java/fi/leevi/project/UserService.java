@@ -20,10 +20,9 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
     
-    public void headerLinks(Principal princibal, Model model) {
+    public void headerLinks(Principal princibal, Model model, User currentUser) {
         if (princibal != null) {
-            model.addAttribute("currentUserPath", userRepository.
-                    findByUsername(princibal.getName()).getPath());   
+            model.addAttribute("currentUserPath", currentUser.getPath());   
         }
     }
 }
