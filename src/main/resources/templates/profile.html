@@ -15,11 +15,17 @@ and open the template in the editor.
     <body>
         <div th:replace="fragments/header :: header"></div>
         
-        <div><span th:text="${person != null} ? ${person.name} :
-                   'no such a profile'">name</span>
+        <div>
+            <span th:text="${person != null} ? ${person.name} :
+                   'no such a profile'">name
+            </span>
         </div>
         
-        <form method="POST" th:action="@{/gifs}" enctype="multipart/form-data">
+        <div th:if="${profilepicture != null}" class="profilepicture">
+            <img th:src="*{'data:image/png;base64,'+profilepicture}" alt="" />
+        </div>
+        
+        <form method="POST" th:action="@{/profile/{path}(path=${person.path})}" enctype="multipart/form-data">
             <input type="file" name="file" id="file"/>
             <input type="submit" value="Change profile picture"/>
         </form>

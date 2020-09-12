@@ -57,12 +57,6 @@ public class UserController {
         return "redirect:/login";
     }
     
-    @GetMapping("profile/{path}")
-    public String profile(@PathVariable String path, Model model) {
-        model.addAttribute("person", userRepository.findByPath(path));
-        return "profile";
-    }
-    
     @GetMapping("login")
     public String loginPage() {
         return "customlogin";
