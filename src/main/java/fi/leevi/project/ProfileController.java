@@ -53,12 +53,11 @@ public class ProfileController {
         
         if (userRepository.findByPath(path) != null) {
             User profileOwner = userRepository.findByPath(path);
+            model.addAttribute("person", profileOwner);
             
             if (profileOwner.getProfilePicture() != null) {
                 model.addAttribute("profilepicture", Base64.getEncoder().
                         encodeToString(profileOwner.getProfilePicture()));
-            
-                model.addAttribute("person", profileOwner);
             }   
         }
         
