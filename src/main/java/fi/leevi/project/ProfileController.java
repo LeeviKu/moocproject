@@ -54,6 +54,8 @@ public class ProfileController {
         if (userRepository.findByPath(path) != null) {
             User profileOwner = userRepository.findByPath(path);
             model.addAttribute("person", profileOwner);
+            model.addAttribute("currentUser", userRepository.
+                    findByUsername(principal.getName()));
             
             if (profileOwner.getProfilePicture() != null) {
                 model.addAttribute("profilepicture", Base64.getEncoder().
