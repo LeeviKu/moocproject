@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -31,8 +32,8 @@ public class frontpageController {
     }
     
     @PostMapping("/frontpage")
-    public String post(Principal principal) {
-        System.out.println("lscslkdfjmsldkfjsm");
+    public String post(Principal principal, @RequestParam String post) {
+        System.out.println(post);
         return "redirect:/";
     }
 }
