@@ -23,17 +23,25 @@ public class frontpageController {
     @Autowired
     UserRepository userRepository;
     
+    @Autowired
+    PostRepository postRepository;
+    
     @GetMapping("/frontpage")
     public String frontpage(Model model, Principal princibal) {
         if (princibal != null) {
             model.addAttribute("currentUserPath", userRepository.findByUsername(princibal.getName()).getPath());   
         }
+        
+        model.addAttribute("posts", postRepository.findAll());
         return "frontpage";
     }
     
     @PostMapping("/frontpage")
     public String post(Principal principal, @RequestParam String post) {
-        System.out.println(post);
-        return "redirect:/";
+        Post newPost = new Post();
+        newPost.setPost(post);
+        newPost.setUser(userRepository.findByUsername(principal.getName()));
+        postRepository.save(newPost);
+        return "redirect:/frontpage";
     }
 }

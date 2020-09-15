@@ -14,5 +14,10 @@
                 <input type="submit" value="Add post"/>
             </form>
         </div>
+        
+        <div th:each="post : ${posts}">
+            <h3 th:text="${post.user.name}">user</h3>
+            <p th:text="${post.post}">post</p>
+        </div>
     </body>
 </html>
