@@ -6,7 +6,9 @@
 package fi.leevi.project;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.TimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,6 +53,7 @@ public class FrontpageController {
         Post newPost = new Post();
         newPost.setPost(post);
         newPost.setUser(userRepository.findByUsername(principal.getName()));
+        newPost.setTime(LocalDateTime.now());
         postRepository.save(newPost);
         return "redirect:/frontpage";
     }

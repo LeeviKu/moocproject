@@ -5,6 +5,7 @@
  */
 package fi.leevi.project;
 
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,6 @@ public class Post extends AbstractPersistable<Long> {
     @ManyToOne
     User user;
     String post;
+    LocalDateTime time;
     
 }

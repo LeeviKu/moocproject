@@ -6,6 +6,8 @@
 package fi.leevi.project;
 
 import java.util.Properties;
+import java.util.TimeZone;
+import javax.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,6 +17,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class ProjectApplication {
+    
+    @PostConstruct
+    public void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("EET"));
+    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectApplication.class, args);
