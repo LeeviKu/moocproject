@@ -15,4 +15,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface FriendsRepository extends JpaRepository<Friends, Long> {
     List<Friends> findByReciever(User reciever);
     List<Friends> findBySender(User sender);
+    List<Friends> findBySenderOrRecieverAndFriends(User sender, User reciever, boolean friends);
 }

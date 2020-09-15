@@ -70,6 +70,8 @@ public class FriendsService {
     
     public List<User> friends(Model model, User currentUser) {
         
+        //replace
+        
         ArrayList<Friends> list = (ArrayList) friendsRepository.
                 findByReciever(currentUser);
         ArrayList<Friends> list2 = (ArrayList) friendsRepository.

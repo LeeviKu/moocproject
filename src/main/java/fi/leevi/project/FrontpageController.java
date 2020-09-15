@@ -6,6 +6,7 @@
 package fi.leevi.project;
 
 import java.security.Principal;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Lepe
  */
 @Controller
-public class frontpageController {
+public class FrontpageController {
     
     @Autowired
     UserRepository userRepository;
@@ -26,13 +27,22 @@ public class frontpageController {
     @Autowired
     PostRepository postRepository;
     
+    @Autowired
+    FriendsRepository friendsRepository;
+    
+    @Autowired
+    FriendsService friendsService;
+    
     @GetMapping("/frontpage")
     public String frontpage(Model model, Principal princibal) {
         if (princibal != null) {
-            model.addAttribute("currentUserPath", userRepository.findByUsername(princibal.getName()).getPath());   
+            User currentUser = userRepository.findByUsername(princibal.getName());
+            model.addAttribute("currentUserPath", currentUser.getPath());
+            List<User> friends = friendsService.friends(model, currentUser);
+            friends.add(currentUser);
+            List<Post> posts = postRepository.findByUserIn(friends);
+            model.addAttribute("posts", posts);
         }
-        
-        model.addAttribute("posts", postRepository.findAll());
         return "frontpage";
     }
     
