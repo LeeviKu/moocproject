@@ -8,6 +8,11 @@
     </head>
     <body>
         <div th:replace="fragments/header :: header"></div>
-        <div></div>
+        <div>
+            <form method="POST" th:action="@{/frontpage}">
+                <input type="text" name="post"/>
+                <input type="submit" value="Add post"/>
+            </form>
+        </div>
     </body>
 </html>

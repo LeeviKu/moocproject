@@ -36,14 +36,6 @@ public class UserController {
         model.addAttribute("accounts", userRepository.findAll());
         return "signup";
     }
-    
-    @GetMapping("/")
-    public String frontpage(Model model, Principal princibal) {
-        if (princibal != null) {
-            model.addAttribute("currentUserPath", userRepository.findByUsername(princibal.getName()).getPath());   
-        }
-        return "frontpage";
-    }
 
     @PostMapping("/signup")
     public String add(@RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String path) {
