@@ -65,4 +65,10 @@ public class ProfileController {
         
         return "profile";
     }
+    
+    
+    @PostMapping("profile/addskill/{path}")
+    public String addSkill(@PathVariable String path, Principal principal, Model model) {
+        return "redirect:/profile/" + path;
+    }
 }
