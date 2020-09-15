@@ -40,6 +40,9 @@ public class User extends AbstractPersistable<Long> {
     @Basic(fetch = FetchType.LAZY)
     private byte[] profilePicture;
     
+    @OneToMany(mappedBy = "user")
+    private List<Skill> skills;
+    
     public User(String username, String password, String name, String path) {
         this.username = username;
         this.name = name;

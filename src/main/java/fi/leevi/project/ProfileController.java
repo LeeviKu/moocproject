@@ -27,6 +27,9 @@ public class ProfileController {
     @Autowired
     UserRepository userRepository;
     
+    @Autowired
+    SkillRepository skillRepository;
+    
     @PostMapping("/profile/{path}")
     public String addProfilePicture(@RequestParam("file") MultipartFile file,
             Principal principal, Model model, @PathVariable String path) throws IOException {
@@ -56,6 +59,7 @@ public class ProfileController {
             model.addAttribute("person", profileOwner);
             model.addAttribute("currentUser", userRepository.
                     findByUsername(principal.getName()));
+            model.addAttribute("skills", profileOwner.getSkills());
             
             if (profileOwner.getProfilePicture() != null) {
                 model.addAttribute("profilepicture", Base64.getEncoder().
@@ -68,7 +72,11 @@ public class ProfileController {
     
     
     @PostMapping("profile/addskill/{path}")
-    public String addSkill(@PathVariable String path, Principal principal, Model model) {
+    public String addSkill(@PathVariable String path, Principal principal, Model model, @RequestParam String skill) {
+        Skill newSkill = new Skill();
+        newSkill.setUser(userRepository.findByUsername(principal.getName()));
+        newSkill.setSkill(skill);
+        skillRepository.save(newSkill);
         return "redirect:/profile/" + path;
     }
 }

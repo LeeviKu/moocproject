@@ -5,16 +5,12 @@
  */
 package fi.leevi.project;
 
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author noob9
+ * @author Lepe
  */
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
-    User findByPath(String path);
-    User findByName(String name);
+public interface SkillRepository extends JpaRepository<Skill, Long> {
+    
 }
-
