@@ -66,8 +66,11 @@ public class FrontpageController {
     @PostMapping("/frontpage/like/{id}")
     public String likePost(@PathVariable Long id, Principal principal) {
         Post post = postRepository.getOne(id);
-        post.getLikes().add(userRepository.findByUsername(principal.getName()));
-        postRepository.save(post);
+        User currentUser = userRepository.findByUsername(principal.getName());
+        if (!post.getLikes().contains(currentUser)) {
+            post.getLikes().add(currentUser);
+            postRepository.save(post);
+        }
         return "redirect:/frontpage";
     }
 }
