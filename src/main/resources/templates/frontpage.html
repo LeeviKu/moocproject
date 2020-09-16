@@ -19,6 +19,9 @@
             <h3 th:text="${post.user.name}">user</h3>
             <h3 th:text="${post.time}">user</h3>
             <p th:text="${post.post}">post</p>
+            <form method="POST" th:action="@{/frontpage/like/{id}(id=${post.id})}">
+                <input type="submit" value="Like"/>
+            </form>
         </div>
     </body>
 </html>
