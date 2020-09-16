@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -59,6 +60,14 @@ public class FrontpageController {
         newPost.setUser(userRepository.findByUsername(principal.getName()));
         newPost.setTime(LocalDateTime.now());
         postRepository.save(newPost);
+        return "redirect:/frontpage";
+    }
+    
+    @PostMapping("/frontpage/like/{id}")
+    public String likePost(@PathVariable Long id, Principal principal) {
+        Post post = postRepository.getOne(id);
+        post.getLikes().add(userRepository.findByUsername(principal.getName()));
+        postRepository.save(post);
         return "redirect:/frontpage";
     }
 }

@@ -22,6 +22,7 @@
             <form method="POST" th:action="@{/frontpage/like/{id}(id=${post.id})}">
                 <input type="submit" value="Like"/>
             </form>
+            <p th:text="${#lists.size(post.likes)}">amount of likes</p>
         </div>
     </body>
 </html>
