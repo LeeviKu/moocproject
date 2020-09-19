@@ -24,7 +24,7 @@
             </form>
             <p th:text="${#lists.size(post.likes)}">amount of likes</p>
             <form method="POST" th:action="@{/frontpage/comment/{postid}(postid=${post.id})}">
-                <textarea class="" name="post"></textarea>
+                <textarea class="" name="postcomment"></textarea>
                 <input type="submit" value="Add comment"/>
             </form>
         </div>
