@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,5 +36,6 @@ public class Post extends AbstractPersistable<Long> {
     @ManyToMany
     Set<User> likes;
     @OneToMany(mappedBy = "post")
+    @OrderBy("time DESC")
     List<Comment> comments;
 }

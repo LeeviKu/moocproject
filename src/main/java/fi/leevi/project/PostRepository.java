@@ -7,6 +7,7 @@ package fi.leevi.project;
 
 import java.util.List;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,5 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Lepe
  */
 public interface PostRepository extends JpaRepository<Post, Long> {
+    @EntityGraph(attributePaths = {"comments"})
     List<Post> findByUserIn(List<User> userList, Pageable pageable);
 }
