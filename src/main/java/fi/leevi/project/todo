@@ -1,5 +1,5 @@
 next:
-likes for skills and posts
+likes for skills
 top 3 skills
 comments for posts
 10 newest comments
@@ -8,3 +8,8 @@ remove for friend
 
 
 stuff that i skipped cause boring:
+sign up validation.
+profilepicture upload error message.
+make it so that when you are on other person's profile the profile link points to your own and not homepage.
+add error message to search user when there is no such a user.
+most of the code in method friends() in class FriendsService can be replaced with the jpa query in FriendsRepository.
