@@ -1,12 +1,11 @@
 next:
 
-?
+? :
+signup validation
 
 stuff that i skipped cause boring:
 
-sign up validation.
 profilepicture upload error message.
-make it so that when you are on other person's profile the profile link points to your own and not homepage.
 add error message to search user when there is no such a user.
 most of the code in method friends() in class FriendsService can be replaced with the jpa query in FriendsRepository.
 clean up profile() in profilecontroller and other methods as well.

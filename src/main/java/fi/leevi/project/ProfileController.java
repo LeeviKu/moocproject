@@ -37,6 +37,9 @@ public class ProfileController {
     @Autowired
     SkillRepository skillRepository;
     
+    @Autowired
+    UserService userService;
+    
     @PostMapping("/profile/{path}")
     public String addProfilePicture(@RequestParam("file") MultipartFile file,
             Principal principal, Model model, @PathVariable String path) throws IOException {
@@ -63,9 +66,10 @@ public class ProfileController {
         
         if (userRepository.findByPath(path) != null) {
             User profileOwner = userRepository.findByPath(path);
+            User currentUser = userRepository.findByUsername(principal.getName());
+            userService.headerLinks(principal, model, currentUser);
             model.addAttribute("person", profileOwner);
-            model.addAttribute("currentUser", userRepository.
-                    findByUsername(principal.getName()));
+            model.addAttribute("currentUser", currentUser);
             List<Skill> skills = new ArrayList<>(skillRepository.findByUser(profileOwner));
             Collections.sort(skills, (a, b) -> {
                 return b.likes.size() - a.likes.size();
