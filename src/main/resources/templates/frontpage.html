@@ -19,12 +19,16 @@
             <h3 th:text="${post.user.name}">user</h3>
             <h3 th:text="${post.time}">user</h3>
             <p th:text="${post.post}">post</p>
+            <p><span th:text="${#lists.size(post.likes)}">amount of likes</span> likes</p>
             <form method="POST" th:action="@{/frontpage/like/{id}(id=${post.id})}">
                 <input type="submit" value="Like"/>
             </form>
-            <p th:text="${#lists.size(post.likes)}">amount of likes</p>
+            <div th:each="comment : ${post.comments}">
+                <h4 th:text="${comment.username}">user</h4>
+                <p th:text="${comment.commentText}">comment</p>
+            </div>
             <form method="POST" th:action="@{/frontpage/comment/{postid}(postid=${post.id})}">
-                <textarea class="" name="postcomment"></textarea>
+                <textarea class="" name="postComment"></textarea>
                 <input type="submit" value="Add comment"/>
             </form>
         </div>

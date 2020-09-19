@@ -34,6 +34,6 @@ public class Post extends AbstractPersistable<Long> {
     LocalDateTime time;
     @ManyToMany
     Set<User> likes;
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "post")
     List<Comment> comments;
 }

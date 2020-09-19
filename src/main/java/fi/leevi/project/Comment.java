@@ -7,6 +7,8 @@ package fi.leevi.project;
 
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,13 +19,16 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  *
  * @author noob9
  */
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment extends AbstractPersistable<Long> {
-    String comment;
+    
+    String commentText;
     @ManyToOne
-    User user;
+    Post post;
+    String username;
     LocalDateTime time;
 }

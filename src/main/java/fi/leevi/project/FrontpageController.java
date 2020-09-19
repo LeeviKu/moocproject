@@ -39,6 +39,9 @@ public class FrontpageController {
     @Autowired
     FriendsService friendsService;
     
+    @Autowired
+    CommentRepository commentRepository;
+    
     @GetMapping("/frontpage")
     public String frontpage(Model model, Principal princibal) {
         if (princibal != null) {
@@ -75,8 +78,14 @@ public class FrontpageController {
     }
     
     @PostMapping("/frontpage/comment/{postid}")
-    public String commentPost(@PathVariable Long postid, Principal principal, @RequestParam String postcomment) {
+    public String commentPost(@PathVariable Long postid, Principal principal, @RequestParam String postComment) {
         Post post = postRepository.getOne(postid);
+        Comment comment = new Comment();
+        comment.setCommentText(postComment);
+        comment.setPost(post);
+        comment.setUsername(userRepository.findByUsername(principal.getName()).getName());
+        comment.setTime(LocalDateTime.now());
+        commentRepository.save(comment);
         return "redirect:/frontpage";
     }
 }
