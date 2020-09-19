@@ -61,13 +61,15 @@ and open the template in the editor.
         
         <div th:if="${friends != null}">
             <h1>Friends</h1>
-            <ul>
-                <li th:each="friends : ${friends}">
+                <div th:each="friends : ${friends}">
                     <a th:href="@{/../profile/{name}(name=${friends.path})}">
                         <span th:text="${friends.name}"></span>
                     </a>
-                </li>
-            </ul>
+                    <form method="POST" th:action="@{/friends/remove/{name}
+                        (name=${friends.name})}">
+                        <input type="submit" value="remove"/>
+                    </form>
+                </div>
         </div>
     </body>
 </html>
