@@ -1,39 +1,3 @@
-* {
-   width: 90%;
-   margin: auto;
-   box-sizing: border-box;
-}
-
-.signup {
-    align-content: center;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-}
-
-.signin {
-    align-content: center;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-}
-
-.signup > h2 {
-}
-
-.signup > input {
-}
-
-.friends {
-    align-content: center;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-}
-
-#createaccount {
-}
-
 .profilepicture {
     width: 200px;
     height: 200px;
