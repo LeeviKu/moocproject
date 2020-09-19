@@ -7,8 +7,15 @@ package fi.leevi.project;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +66,20 @@ public class ProfileController {
             model.addAttribute("person", profileOwner);
             model.addAttribute("currentUser", userRepository.
                     findByUsername(principal.getName()));
-            model.addAttribute("skills", profileOwner.getSkills());
+            List<Skill> skills = new ArrayList<>(skillRepository.findByUser(profileOwner));
+            Collections.sort(skills, (a, b) -> {
+                return b.likes.size() - a.likes.size();
+            });
+            
+            List<Skill> top3Skills = new ArrayList<>();
+            if (skills.size() > 3) {
+                top3Skills = skills.subList(0, 3);
+                model.addAttribute("otherskills", skills.subList(3, skills.size()));
+            } else if (skills.size() <= 3) {
+                top3Skills = skills.subList(0, skills.size());
+            }
+            
+            model.addAttribute("top3skills", top3Skills);
             
             if (profileOwner.getProfilePicture() != null) {
                 model.addAttribute("profilepicture", Base64.getEncoder().
@@ -73,10 +93,13 @@ public class ProfileController {
     
     @PostMapping("profile/addskill/{path}")
     public String addSkill(@PathVariable String path, Principal principal, Model model, @RequestParam String skill) {
-        Skill newSkill = new Skill();
-        newSkill.setUser(userRepository.findByUsername(principal.getName()));
-        newSkill.setSkill(skill);
-        skillRepository.save(newSkill);
+        User currentUser = userRepository.findByUsername(principal.getName());
+        if (skillRepository.findBySkillAndUser(skill, currentUser) == null) {
+            Skill newSkill = new Skill();
+            newSkill.setUser(currentUser);
+            newSkill.setSkill(skill);
+            skillRepository.save(newSkill);
+        }
         return "redirect:/profile/" + path;
     }
     

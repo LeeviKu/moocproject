@@ -5,6 +5,7 @@
  */
 package fi.leevi.project;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -29,6 +30,6 @@ public class Skill extends AbstractPersistable<Long> {
     @ManyToOne
     User user;
     @ManyToMany
-    Set<User> likes;
+    List<User> likes;
     
 }
