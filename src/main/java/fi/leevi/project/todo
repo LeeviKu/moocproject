@@ -7,6 +7,4 @@ default profile picture
 
 stuff that i skipped cause boring:
 
-add error message to search user when there is no such a user.
-most of the code in method friends() in class FriendsService can be replaced with the jpa query in FriendsRepository.
 clean up profile() in profilecontroller and other methods as well.

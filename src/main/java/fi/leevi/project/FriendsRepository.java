@@ -16,5 +16,4 @@ public interface FriendsRepository extends JpaRepository<Friends, Long> {
     List<Friends> findByReciever(User reciever);
     List<Friends> findBySender(User sender);
     Friends findBySenderAndReciever(User sender, User reciever); 
-    List<Friends> findBySenderOrRecieverAndFriends(User sender, User reciever, boolean friends);
 }
