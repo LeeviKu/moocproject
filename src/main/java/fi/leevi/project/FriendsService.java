@@ -72,6 +72,14 @@ public class FriendsService {
         friendsRepository.delete(friendsRepository.findBySenderAndReciever(userRepository.findByName(name), currentUser));
     }
     
+    public void removeFriend(User friend, User currentUser) {
+        if (friendsRepository.findBySenderAndReciever(friend, currentUser) != null) {
+            friendsRepository.delete(friendsRepository.findBySenderAndReciever(friend, currentUser));   
+        } else {
+            friendsRepository.delete(friendsRepository.findBySenderAndReciever(currentUser, friend));  
+        }
+    }
+    
     public List<User> friends(Model model, User currentUser) {
         
         //replace

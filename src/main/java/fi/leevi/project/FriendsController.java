@@ -100,4 +100,13 @@ public class FriendsController {
         
         return "redirect:/friends";
     }
+    
+    @PostMapping("/friends/remove/{name}")
+    public String removeFriend(@PathVariable String name, Principal principal) {
+        User currentUser = userRepository.findByUsername(principal.getName());
+        User friend = userRepository.findByName(name);
+        friendsService.removeFriend(friend, currentUser);
+        
+        return "redirect:/friends";
+    }
 }
