@@ -26,6 +26,10 @@ and open the template in the editor.
                    (name=${friendrequest.sender.name})}">
                     <input type="submit" value="add"/>
                 </form>
+                <form method="POST" th:action="@{/friends/reject/{name}
+                   (name=${friendrequest.sender.name})}">
+                    <input type="submit" value="ignore"/>
+                </form>
             </li>
         </ul>
         </div>
