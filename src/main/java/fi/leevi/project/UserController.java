@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,10 @@ public class UserController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
-
+    
+    @Autowired
+    UserService userService;
+    
     @GetMapping("/signup")
     public String list(Model model) {
         model.addAttribute("accounts", userRepository.findAll());
@@ -38,13 +42,13 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String add(@RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String path) {
-        if (userRepository.findByUsername(username) != null) {
-            return "redirect:/signup";
+    public String add(@RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String path, Model model) {
+        if (!userService.validateSignup(model, username, password, name, path)) {
+            return "signup";
         }
-        
         User user = new User(username, passwordEncoder.encode(password), name,
                 path);
+        
         userRepository.save(user);
         return "redirect:/login";
     }

@@ -10,13 +10,25 @@
         <div th:replace="fragments/header :: header"></div>
         <form class="signup" method="POST" th:action="@{/signup}">
             <h2>Username</h2>
-            <input type="text" name="username" autofocus=""/>
+            <input type="text" name="username" autofocus="" th:value="${username}"/>
+            <div th:if="${usernameerror != null}">
+                <p th:text="${usernameerror}">error</p>
+            </div>
             <h2>Password</h2>
             <input type="password" name="password"/>
+            <div th:if="${passworderror != null}">
+                <p th:text="${passworderror}">error</p>
+            </div>
             <h2>Name</h2>
-            <input type="text" name="name"/>
+            <input type="text" name="name" th:value="${name}"/>
+            <div th:if="${nameerror != null}">
+                <p th:text="${nameerror}">error</p>
+            </div>
             <h2>profile path</h2>
-            <input type="text" name="path"/>
+            <input type="text" name="path" th:value="${path}"/>
+            <div th:if="${patherror != null}">
+                <p th:text="${patherror}">error</p>
+            </div>
             <br/>
             <input id="createaccount" type="submit" value="Create an account"/>
         </form>
