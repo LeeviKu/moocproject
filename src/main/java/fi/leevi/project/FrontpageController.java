@@ -73,4 +73,9 @@ public class FrontpageController {
         }
         return "redirect:/frontpage";
     }
+    
+    @PostMapping("/frontpage/comment/{postid}")
+    public String commentPost(@PathVariable Long postid, Principal principal) {
+        return "redirect:/frontpage";
+    }
 }
