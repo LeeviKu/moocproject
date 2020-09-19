@@ -28,7 +28,7 @@ and open the template in the editor.
             <div th:if="${person.name} == ${currentUser.name}">
                 <form method="POST" th:action="@{/profile/{path}(path=${person.path})}" enctype="multipart/form-data">
                     <input type="file" name="file" id="file"/>
-                    <input type="submit" value="Change profile picture"/>
+                    <span><input type="submit" value="Change profile picture"/> png/jpg/jpeg, max filesize is 1000kb</span>
                 </form>
                 <form method="POST" th:action="@{/profile/addskill/{path}(path=${person.path})}">
                     <h2>Add skill</h2>
