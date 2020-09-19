@@ -92,4 +92,12 @@ public class FriendsController {
         
         return "redirect:/friends";
     }
+    
+    @PostMapping("/friends/reject/{name}")
+    public String rejectFriend(@PathVariable String name, Principal principal) {
+        User currentUser = userRepository.findByUsername(principal.getName());
+        friendsService.rejectFriend(name, currentUser);
+        
+        return "redirect:/friends";
+    }
 }

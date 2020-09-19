@@ -68,6 +68,10 @@ public class FriendsService {
        }
     }
     
+    public void rejectFriend(String name, User currentUser) {
+        friendsRepository.delete(friendsRepository.findBySenderAndReciever(userRepository.findByName(name), currentUser));
+    }
+    
     public List<User> friends(Model model, User currentUser) {
         
         //replace
