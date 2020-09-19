@@ -1,4 +1,5 @@
 next:
+
 likes for skills
 top 3 skills
 comments for posts
@@ -8,6 +9,7 @@ remove for friend
 
 
 stuff that i skipped cause boring:
+
 sign up validation.
 profilepicture upload error message.
 make it so that when you are on other person's profile the profile link points to your own and not homepage.

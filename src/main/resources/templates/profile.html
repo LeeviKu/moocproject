@@ -40,6 +40,10 @@ and open the template in the editor.
         
         <div th:each="skill : ${skills}">
             <p th:text="${skill.skill}">skill</p>
+            <form method="POST" th:action="@{/profile/{path}/like/{id} (id=${skill.id}, path=${person.path})}">
+                <input type="submit" value="Like"/>
+            </form>
+            <p th:text="${#lists.size(skill.likes)}">amount of likes</p>
         </div>
     </body>
 </html>

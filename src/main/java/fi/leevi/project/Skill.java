@@ -5,7 +5,9 @@
  */
 package fi.leevi.project;
 
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +28,7 @@ public class Skill extends AbstractPersistable<Long> {
     String skill;
     @ManyToOne
     User user;
+    @ManyToMany
+    Set<User> likes;
     
 }

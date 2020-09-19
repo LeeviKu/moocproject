@@ -79,4 +79,15 @@ public class ProfileController {
         skillRepository.save(newSkill);
         return "redirect:/profile/" + path;
     }
+    
+    @PostMapping("/profile/{path}/like/{id}")
+    public String likePost(@PathVariable Long id, @PathVariable String path, Principal principal) {
+        Skill skill = skillRepository.getOne(id);
+        User currentUser = userRepository.findByUsername(principal.getName());
+        if (!skill.getLikes().contains(currentUser)) {
+            skill.getLikes().add(currentUser);
+            skillRepository.save(skill);
+        }
+        return "redirect:/profile/" + path;
+    }
 }
