@@ -38,6 +38,7 @@ and open the template in the editor.
             <input type="text" name="name"/>
             <input type="submit" value="search"/>
         </form>
+        <p th:text="${notfound}">notfound</p>
         <div th:if="${searchresult != null}">
             <div>
                 <a th:href="@{/profile/{searchresult.path}

@@ -65,6 +65,8 @@ public class FriendsController {
                 validateSearch(searchedUser, currentUser, friends,
                         friendRequests));
             model.addAttribute("searchresult", searchedUser);
+        } else {
+            model.addAttribute("notfound", "No user with that name.");
         }
         
         return "friends";
