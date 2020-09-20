@@ -17,12 +17,15 @@ and open the template in the editor.
         
         <div>
             <span th:text="${person != null} ? ${person.name} :
-                   'no such a profile'">name
+                   'no such profile'">name
             </span>
         </div>
         
         <div th:if="${profilepicture != null}" class="profilepicture">
-            <img th:src="*{'data:image/png;base64,'+profilepicture}" alt="" />
+            <img th:src="*{'data:image/png;base64,'+profilepicture}" alt="profile picture" />
+        </div>
+        <div th:if="${profilepicture == null}" class="profilepicture">
+            <img src="/images/profile.png" alt="profile picture"/>
         </div>
         <div th:if="${person != null and currentUser != null}">
             <div th:if="${person.name} == ${currentUser.name}">
