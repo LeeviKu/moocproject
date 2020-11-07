@@ -240,6 +240,7 @@
 .person {
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
 .personname {
@@ -258,7 +259,6 @@
 
 .profilepicture {
     margin-left: 2%;
-    margin-top: 10px;
 }
 
 .profilepictureform {

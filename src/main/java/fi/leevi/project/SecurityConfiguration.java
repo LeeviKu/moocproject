@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/signup","/signup/**", "/css/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/frontpage").permitAll()
-                .antMatchers("/h2-console","/h2-console/**").permitAll()
+                .antMatchers("/h2-console","/h2-console/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated().and()
                 .formLogin().loginPage("/login")
                 .permitAll().defaultSuccessUrl("/", true).permitAll().and()

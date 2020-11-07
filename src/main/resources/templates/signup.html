@@ -10,6 +10,7 @@
         <div th:replace="fragments/header :: header"></div>
         <form class="signup" method="POST" th:action="@{/signup}">
             <h2>Username</h2>
+            <p>Name you login with</p>
             <p>6-12 characters long and no spaces</p>
             <input type="text" name="username" autofocus="" th:value="${username}"/>
             <div th:if="${usernameerror != null}">
@@ -22,12 +23,14 @@
                 <p th:text="${passworderror}">error</p>
             </div>
             <h2>Name</h2>
+            <p>Name other people are going to see</p>
             <p>3-12 characters long and no spaces</p>
             <input type="text" name="name" th:value="${name}"/>
             <div th:if="${nameerror != null}">
                 <p th:text="${nameerror}">error</p>
             </div>
-            <h2>profile path</h2>
+            <h2>Profile path</h2>
+            <p>Url path for your profile</p>
             <span>3-12 characters long(only a-z and 0-9)</span>
             <input type="text" name="path" th:value="${path}"/>
             <div th:if="${patherror != null}">
