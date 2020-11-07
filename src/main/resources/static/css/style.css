@@ -1,4 +1,236 @@
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .profilepicture {
     width: 200px;
     height: 200px;
+}
+
+.header {
+    overflow: hidden;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    background-color: lightblue;
+}
+
+.header > div a {
+    text-decoration: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.header > div a:hover {
+    background-color: white;
+}
+
+#home {
+    grid-column: 1/2;
+}
+
+#login {
+    grid-column: 12/13;
+}
+
+#signup {
+    grid-column: 11/12;
+}
+
+#friends {
+    grid-column: 2/3;
+}
+
+#profile {
+    grid-column: 11/12;
+}
+
+#logout {
+    grid-column: 12/13;
+}
+
+#createpost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#posttext {
+}
+
+.postsubmit {
+    padding: 1em;
+    background-color: lightblue;
+    text-decoration: none;
+    align-self: flex-end;
+    text-align: center;
+}
+
+.post {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 2%;
+    font-size: 22px;
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 18px;
+}
+
+#likebutton {
+    margin-left: 10px;
+    padding: 0.3em;
+    background-color: lightblue;
+    text-align: center;
+}
+
+.postcontent{
+    display: block;
+    width: 800px;
+    overflow: hidden;
+}
+
+.poster span {
+    font-weight: bold;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 2%;
+    margin-top: 10px;
+}
+
+#comments {
+    font-weight: bold;
+}
+
+.commentform {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    margin-top: 10px;
+    width: 200px;
+}
+
+.commentbutton {
+    padding: 0.3em;
+    background-color: lightblue;
+    width: 100px;
+    align-self: flex-end;
+}
+
+.commentuser {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#commenttime {
+    padding-left: 10px;
+}
+
+.signin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#loginbutton {
+    background-color: lightblue;
+    padding: 0.4em;
+    text-align: center;
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#signupbutton {
+    background-color: lightblue;
+    margin-top: -10px;
+    padding: 0.4em;
+    text-align: center;
+}
+
+.friendrequests {
+    margin-left: 2%;
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.friendrequeststitle {
+    margin-left: 2%;
+    margin-bottom: 10px;
+}
+
+.friendrequestbuttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.friendrequestbuttons > form input {
+    background-color: lightblue;
+    padding: 0.3em;
+    text-align: center;
+}
+
+.namelink {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.namelink:hover {
+    color: lightblue;
+}
+
+.searchuser {
+    margin-top: 10px;
+    margin-left: 2%;
+}
+
+#searchbutton {
+    background-color: lightblue;
+    padding: 0.3em;
+    text-align: center;
+}
+
+.addfriendbutton {
+    background-color: lightblue;
+    padding: 0.2em;
+    text-align: center;
+}
+
+.searchresult {
+    margin-left: 2%;
+}
+
+.currentfriends {
+    margin-left: 2%;
+    margin-top: 5%;
+}
+
+.removefriendbutton {
+    background-color: lightblue;
+    padding: 0.3em;
+    text-align: center;
 }

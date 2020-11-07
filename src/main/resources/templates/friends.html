@@ -16,59 +16,61 @@ and open the template in the editor.
                 
         <div th:replace="fragments/header :: header"></div>
         <div th:if="${friendRequests != null}">
-        <h1>Friend requests</h1>
-        <ul>
-            <li th:each="friendrequest : ${friendRequests}">
-                <a th:href="@{/../profile/{name}(name=${friendrequest.sender.path})}">
-                    <span th:text="${friendrequest.sender.name}"></span>
-                </a>
-                <form method="POST" th:action="@{/friends/accept/{name}
-                   (name=${friendrequest.sender.name})}">
-                    <input type="submit" value="add"/>
-                </form>
-                <form method="POST" th:action="@{/friends/reject/{name}
-                   (name=${friendrequest.sender.name})}">
-                    <input type="submit" value="ignore"/>
-                </form>
-            </li>
-        </ul>
+            <h1 class='friendrequeststitle' >Friend requests:</h1>
+            <ul class='friendrequests'>
+                <li th:each="friendrequest : ${friendRequests}">
+                    <a class='namelink' th:href="@{/../profile/{name}(name=${friendrequest.sender.path})}">
+                        <span th:text="${friendrequest.sender.name}"></span>
+                    </a>
+                    <div class='friendrequestbuttons'>
+                        <form method="POST" th:action="@{/friends/accept/{name}
+                            (name=${friendrequest.sender.name})}">
+                            <input type="submit" value="add"/>
+                        </form>
+                        <form method="POST" th:action="@{/friends/reject/{name}
+                            (name=${friendrequest.sender.name})}">
+                            <input type="submit" value="ignore"/>
+                        </form>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <form method="POST" th:action="@{/friends}">
-            <h2>Username</h2>
+        <form class='searchuser' method="POST" th:action="@{/friends}">
+            <h2>Search user</h2>
             <input type="text" name="name"/>
-            <input type="submit" value="search"/>
+            <input id="searchbutton" type="submit" value="search"/>
         </form>
         <p th:text="${notfound}">notfound</p>
         <div th:if="${searchresult != null}">
-            <div>
-                <a th:href="@{/profile/{searchresult.path}
+            <div class="searchresult">
+                <a class='namelink' th:href="@{/profile/{searchresult.path}
                    (searchresult.path=${searchresult.path})}" 
                    th:text="${searchresult.name}">
                     searchresult
                 </a>
             </div>
-            <div>
+            <div class="searchresult">
                 <form method="POST" th:action="@{/friends/add/{searchresult.name}
                    (searchresult.name=${searchresult.name})}">
                     <div th:if="${notAFriend}">
-                    <input type="submit" value="add"/>
+                        <input class='addfriendbutton' type="submit" value="add"/>
                     </div>
                     <div th:if="${!notAFriend}">
-                        <input type="submit" value="already a friend" disabled=""/>
+                        <input class='addfriendbutton' type="submit" value="already a friend" disabled=""/>
                     </div>
                 </form>
             </div>
         </div>
         
-        <div th:if="${friends != null}">
-            <h1>Friends</h1>
+        <div class='currentfriends' th:if="${friends != null}">
+            <h1>Friends:</h1>
                 <div th:each="friends : ${friends}">
-                    <a th:href="@{/../profile/{name}(name=${friends.path})}">
+                    <a class='namelink' th:href="@{/../profile/{name}(name=${friends.path})}">
                         <span th:text="${friends.name}"></span>
                     </a>
                     <form method="POST" th:action="@{/friends/remove/{name}
                         (name=${friends.name})}">
-                        <input type="submit" value="remove"/>
+                        <input class='removefriendbutton' type="submit" value="remove"/>
                     </form>
                 </div>
         </div>

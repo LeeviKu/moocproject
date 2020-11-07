@@ -1,0 +1,15 @@
+2020-11-04 17:48:41 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "COMMENTS" not found; SQL statement:
+SELECT * FROM comments [42102-197]
+2020-11-04 17:48:43 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "COMMENTS" not found; SQL statement:
+SELECT * FROM comments [42102-197]
+2020-11-07 18:16:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "POST VARCHAR(255)": "STRINGDECODE('O\u00e5adofjklkj\u00f6asffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff... (660)"; SQL statement:
+insert into post (post, time, user_id, id) values (?, ?, ?, ?) [22001-197]
+2020-11-07 18:17:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "POST VARCHAR(255)": "STRINGDECODE('O\u00e5adofjklkj\u00f6asffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff... (608)"; SQL statement:
+insert into post (post, time, user_id, id) values (?, ?, ?, ?) [22001-197]
+2020-11-07 18:17:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "POST VARCHAR(255)": "STRINGDECODE('fjklkj\u00f6asffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff... (259)"; SQL statement:
+insert into post (post, time, user_id, id) values (?, ?, ?, ?) [22001-197]

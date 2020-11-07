@@ -9,28 +9,40 @@
     <body>
         <div th:replace="fragments/header :: header"></div>
         <div>
-            <form method="POST" th:action="@{/frontpage}">
-                <textarea class="" name="post"></textarea>
-                <input type="submit" value="Add post"/>
+            <form id="createpost" method="POST" th:action="@{/frontpage}">
+                <p>Write a post. Max length 250 characters</p>
+                <textarea id="posttext" name="post" rows="4" cols="100" ></textarea>
+                <input class="postsubmit" type="submit" value="Send"/>
             </form>
         </div>
         
         <div th:each="post : ${posts}">
-            <span th:text="${post.user.name}">user</span>
-            <span th:text="${#temporals.format(post.time, 'dd-MM-yyyy HH:mm')}">time</span>
-            <p th:text="${post.post}">post</p>
-            <p><span th:text="${#lists.size(post.likes)}">amount of likes</span> likes</p>
-            <form method="POST" th:action="@{/frontpage/like/{id}(id=${post.id})}">
-                <input type="submit" value="Like"/>
-            </form>
-            <div th:each="comment,pStat : ${post.comments}" th:unless="${pStat.index > 9}">
-                <h4 th:text="${comment.username}">user</h4>
-                <h6 th:text="${#temporals.format(comment.time, 'dd-MM-yyyy HH:mm')}">comment time</h6>
-                <p th:text="${comment.commentText}">comment</p>
+            <div class="post">
+                <div class="poster">
+                    <span class="postname" th:text="${post.user.name}">user</span>
+                    <span class="posttime" th:text="${#temporals.format(post.time, 'dd-MM-yyyy HH:mm')}">time</span>
+                </div>
+                <p class='postcontent' th:text="${post.post}">post</p>
+                <div class="likes">
+                    <p><span th:text="${#lists.size(post.likes)}">amount of likes</span> likes </p>
+                    <form method="POST" th:action="@{/frontpage/like/{id}(id=${post.id})}">
+                        <input id='likebutton' type="submit" value="Like"/>
+                    </form>
+                </div>
+                <p id="comments">comments:</p>
             </div>
-            <form method="POST" th:action="@{/frontpage/comment/{postid}(postid=${post.id})}">
-                <textarea class="" name="postComment"></textarea>
-                <input type="submit" value="Add comment"/>
+            <div th:each="comment,pStat : ${post.comments}" th:unless="${pStat.index > 9}">
+                <div class="comment">
+                    <div class='commentuser'>
+                        <p id='' th:text="${comment.username}">user</p>
+                        <p id='commenttime' th:text="${#temporals.format(comment.time, 'dd-MM-yyyy HH:mm')}">comment time</p>
+                    </div>
+                <p id='commentcontent' th:text="${comment.commentText}">comment</p>
+                </div>
+            </div>                       
+            <form class='commentform' method="POST" th:action="@{/frontpage/comment/{postid}(postid=${post.id})}">        
+                <textarea class="commenttextarea" name="postComment"></textarea>
+                <input class='commentbutton' type="submit" value="Add comment"/>
             </form>
         </div>
     </body>

@@ -14,16 +14,24 @@ and open the template in the editor.
     </head>
     <body>
         <div class="header" th:fragment="header">
-            <a href="/">Home</a>
-            <span sec:authorize="isAnonymous()">
-                <a href="/signup">Sign up</a>
+            <div id="home">
+                <a href="/">Home</a>
+            </div>
+            <div id="signup" sec:authorize="isAnonymous()">
+                <a href="/signup">Signup</a>
+            </div>
+            <div id="login" sec:authorize="isAnonymous()">
                 <a href="/login">Login</a>
-            </span>
-            <span sec:authorize="isAuthenticated()">
+            </div>
+            <div id="friends" sec:authorize="isAuthenticated()">
                 <a href="/friends">Friends</a>
+            </div>
+            <div id="profile" sec:authorize="isAuthenticated()">
                 <a th:href="@{/profile/{currentUserPath}(currentUserPath=${currentUserPath})}">Profile</a>
+            </div>
+            <div id="logout" sec:authorize="isAuthenticated()">
                 <a href="/logout">Logout</a>
-            </span>
+            </div>
         </div>
     </body>
 </html>

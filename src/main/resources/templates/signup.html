@@ -10,27 +10,31 @@
         <div th:replace="fragments/header :: header"></div>
         <form class="signup" method="POST" th:action="@{/signup}">
             <h2>Username</h2>
-            <span><input type="text" name="username" autofocus="" th:value="${username}"/>6-12 characters long and no spaces</span>
+            <p>6-12 characters long and no spaces</p>
+            <input type="text" name="username" autofocus="" th:value="${username}"/>
             <div th:if="${usernameerror != null}">
                 <p th:text="${usernameerror}">error</p>
             </div>
             <h2>Password</h2>
-            <span><input type="password" name="password"/>8-32 characters long and no spaces</span>
+            <p>8-32 characters long and no spaces</p>
+            <input type="password" name="password"/>
             <div th:if="${passworderror != null}">
                 <p th:text="${passworderror}">error</p>
             </div>
             <h2>Name</h2>
-            <span><input type="text" name="name" th:value="${name}"/>3-12 characters long and no spaces</span>
+            <p>3-12 characters long and no spaces</p>
+            <input type="text" name="name" th:value="${name}"/>
             <div th:if="${nameerror != null}">
                 <p th:text="${nameerror}">error</p>
             </div>
             <h2>profile path</h2>
-            <span><input type="text" name="path" th:value="${path}"/>3-12 characters long(only a-z and 0-9)</span>
+            <span>3-12 characters long(only a-z and 0-9)</span>
+            <input type="text" name="path" th:value="${path}"/>
             <div th:if="${patherror != null}">
                 <p th:text="${patherror}">error</p>
             </div>
             <br/>
-            <input id="createaccount" type="submit" value="Create an account"/>
+            <input id="signupbutton" type="submit" value="Create an account"/>
         </form>
     </body>
 </html>

@@ -33,7 +33,7 @@ public class Post extends AbstractPersistable<Long> {
     User user;
     String post;
     LocalDateTime time;
-    @ManyToMany
+    @OneToMany
     Set<User> likes;
     @OneToMany(mappedBy = "post")
     @OrderBy("time DESC")

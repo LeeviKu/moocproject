@@ -59,11 +59,13 @@ public class FrontpageController {
     
     @PostMapping("/frontpage")
     public String post(Principal principal, @RequestParam String post) {
-        Post newPost = new Post();
-        newPost.setPost(post);
-        newPost.setUser(userRepository.findByUsername(principal.getName()));
-        newPost.setTime(LocalDateTime.now());
-        postRepository.save(newPost);
+        if (post.length() <= 250) {
+            Post newPost = new Post();
+            newPost.setPost(post);
+            newPost.setUser(userRepository.findByUsername(principal.getName()));
+            newPost.setTime(LocalDateTime.now());
+            postRepository.save(newPost);
+        }
         return "redirect:/frontpage";
     }
     

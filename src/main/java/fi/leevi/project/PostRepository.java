@@ -15,6 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Lepe
  */
 public interface PostRepository extends JpaRepository<Post, Long> {
-    @EntityGraph(attributePaths = {"comments"})
+    @EntityGraph(attributePaths = {"comments", "likes"})
     List<Post> findByUserIn(List<User> userList, Pageable pageable);
 }
