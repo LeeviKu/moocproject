@@ -37,14 +37,14 @@ and open the template in the editor.
                 </form>
                 <form class='skillform' method="POST" th:action="@{/profile/addskill/{path}(path=${person.path})}">
                     <h2>Add skill</h2>
-                    <input type="text" name="skill"/>
+                    <input type="text" name="skill" />
                     <input class='profilebutton' type="submit" value="Add skill"/>
                 </form>
             </div>
         </div>
         
         <div class='skills'>
-        <h2>Top 3 skills:</h2>
+        <h2>Most liked skills(top 3):</h2>
         <div th:each="skill : ${top3skills}">
             <p class="skilltext" th:text="${skill.skill}">skill</p>
             <div class="skilllikes">

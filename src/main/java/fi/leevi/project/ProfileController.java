@@ -98,7 +98,7 @@ public class ProfileController {
     @PostMapping("profile/addskill/{path}")
     public String addSkill(@PathVariable String path, Principal principal, Model model, @RequestParam String skill) {
         User currentUser = userRepository.findByUsername(principal.getName());
-        if (skillRepository.findBySkillAndUser(skill, currentUser) == null) {
+        if (skillRepository.findBySkillAndUser(skill, currentUser) == null && !skill.isEmpty() && skill.length() <= 100) {
             Skill newSkill = new Skill();
             newSkill.setUser(currentUser);
             newSkill.setSkill(skill);

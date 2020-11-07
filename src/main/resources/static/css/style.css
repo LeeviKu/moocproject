@@ -93,6 +93,7 @@
     display: block;
     width: 800px;
     overflow: hidden;
+    word-break: break-all;
 }
 
 .poster span {
@@ -308,3 +309,9 @@ input[type="file"] {
     margin-left: 2%;
 }
 
+#commentcontent {
+    display: block;
+    width: 800px;
+    overflow: hidden;
+    word-break: break-all;
+}

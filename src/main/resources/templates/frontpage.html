@@ -41,7 +41,7 @@
                 </div>
             </div>                       
             <form class='commentform' method="POST" th:action="@{/frontpage/comment/{postid}(postid=${post.id})}">        
-                <textarea class="commenttextarea" name="postComment"></textarea>
+                <textarea class="commenttextarea" name="postComment" maxlength='250'></textarea>
                 <input class='commentbutton' type="submit" value="Add comment"/>
             </form>
             <div class="line">
