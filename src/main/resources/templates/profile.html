@@ -15,47 +15,55 @@ and open the template in the editor.
     <body>
         <div th:replace="fragments/header :: header"></div>
         
-        <div>
-            <span th:text="${person != null} ? ${person.name} :
-                   'no such profile'">name
-            </span>
-        </div>
         
-        <div th:if="${profilepicture != null}" class="profilepicture">
-            <img th:src="*{'data:image/png;base64,'+profilepicture}" alt="profile picture" />
-        </div>
-        <div th:if="${profilepicture == null}" class="profilepicture">
-            <img src="/images/profile.png" alt="profile picture"/>
+        <div class="person">
+            <div th:if="${profilepicture != null}" class="profilepicture">
+                <img th:src="*{'data:image/png;base64,'+profilepicture}" alt="profile picture" />
+            </div>
+            <div th:if="${profilepicture == null}" class="profilepicture">
+                <img src="/images/profile.png" alt="profile picture"/>
+            </div>
+            <div>
+                <span th:text="${person != null} ? ${person.name} :
+                      'no such profile'" class="personname">name
+                </span>
+            </div>
         </div>
         <div th:if="${person != null and currentUser != null}">
             <div th:if="${person.name} == ${currentUser.name}">
-                <form method="POST" th:action="@{/profile/{path}(path=${person.path})}" enctype="multipart/form-data">
-                    <input type="file" name="file" id="file"/>
-                    <span><input type="submit" value="Change profile picture"/> png/jpg/jpeg, max filesize is 1000kb</span>
+                <form class='profilepictureform' method="POST" th:action="@{/profile/{path}(path=${person.path})}" enctype="multipart/form-data">
+                    <label class="filebutton"><input type="file" name="file" id="file"/>Choose file</label>
+                    <span><input class='profilebutton' type="submit" value="Change profile picture"/> png/jpg/jpeg, max filesize is 1000kb</span>
                 </form>
-                <form method="POST" th:action="@{/profile/addskill/{path}(path=${person.path})}">
+                <form class='skillform' method="POST" th:action="@{/profile/addskill/{path}(path=${person.path})}">
                     <h2>Add skill</h2>
                     <input type="text" name="skill"/>
-                    <input type="submit" value="Add skill"/>
+                    <input class='profilebutton' type="submit" value="Add skill"/>
                 </form>
             </div>
         </div>
         
+        <div class='skills'>
         <h2>Top 3 skills:</h2>
         <div th:each="skill : ${top3skills}">
-            <p th:text="${skill.skill}">skill</p>
-            <form method="POST" th:action="@{/profile/{path}/like/{id} (id=${skill.id}, path=${person.path})}">
-                <input type="submit" value="Like"/>
-            </form>
-            <p th:text="${#lists.size(skill.likes)}">amount of likes</p>
+            <p class="skilltext" th:text="${skill.skill}">skill</p>
+            <div class="skilllikes">
+                <p th:text="${#lists.size(skill.likes)}">amount of likes</p>
+                <form method="POST" th:action="@{/profile/{path}/like/{id} (id=${skill.id}, path=${person.path})}">
+                    <input class='profilebutton' type="submit" value="Like"/>
+                </form>
+            </div>
         </div>
         <h2>Other skills:</h2>
         <div th:each="skill : ${otherskills}">
-            <p th:text="${skill.skill}">skill</p>
-            <form method="POST" th:action="@{/profile/{path}/like/{id} (id=${skill.id}, path=${person.path})}">
-                <input type="submit" value="Like"/>
-            </form>
-            <p th:text="${#lists.size(skill.likes)}">amount of likes</p>
+            <p class='skilltext' th:text="${skill.skill}">skill</p>
+            <div class="skilllikes">
+                <p th:text="${#lists.size(skill.likes)}">amount of likes</p>
+                <form method="POST" th:action="@{/profile/{path}/like/{id} (id=${skill.id}, path=${person.path})}">
+                    <input class='profilebutton' type="submit" value="Like"/>
+                </form>
+            </div>
+        </div>
         </div>
     </body>
 </html>

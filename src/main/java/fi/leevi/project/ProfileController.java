@@ -44,7 +44,7 @@ public class ProfileController {
     public String addProfilePicture(@RequestParam("file") MultipartFile file,
             Principal principal, Model model, @PathVariable String path) throws IOException {
         
-        if (file != null) {
+        if (file != null && file.getSize() <= 1000000) {
             
             if (file.getContentType().equals("image/png")
             || file.getContentType().equals("image/jpg")

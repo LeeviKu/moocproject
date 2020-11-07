@@ -59,7 +59,8 @@ public class FrontpageController {
     
     @PostMapping("/frontpage")
     public String post(Principal principal, @RequestParam String post) {
-        if (post.length() <= 250) {
+        System.out.println(post.length());
+        if (post.length() <= 254) {
             Post newPost = new Post();
             newPost.setPost(post);
             newPost.setUser(userRepository.findByUsername(principal.getName()));

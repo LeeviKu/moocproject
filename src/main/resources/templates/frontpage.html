@@ -11,7 +11,7 @@
         <div>
             <form id="createpost" method="POST" th:action="@{/frontpage}">
                 <p>Write a post. Max length 250 characters</p>
-                <textarea id="posttext" name="post" rows="4" cols="100" ></textarea>
+                <textarea id="posttext" name="post" rows="4" cols="100" maxlength='250' wrap='hard' ></textarea>
                 <input class="postsubmit" type="submit" value="Send"/>
             </form>
         </div>
@@ -44,6 +44,9 @@
                 <textarea class="commenttextarea" name="postComment"></textarea>
                 <input class='commentbutton' type="submit" value="Add comment"/>
             </form>
+            <div class="line">
+                
+            </div>
         </div>
     </body>
 </html>
