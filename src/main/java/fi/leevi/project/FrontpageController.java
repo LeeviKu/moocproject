@@ -60,7 +60,7 @@ public class FrontpageController {
     @PostMapping("/frontpage")
     public String post(Principal principal, @RequestParam String post) {
         System.out.println(post.length());
-        if (post.length() <= 254) {
+        if (post.length() <= 254 && !post.isEmpty()) {
             Post newPost = new Post();
             newPost.setPost(post);
             newPost.setUser(userRepository.findByUsername(principal.getName()));
@@ -83,13 +83,16 @@ public class FrontpageController {
     
     @PostMapping("/frontpage/comment/{postid}")
     public String commentPost(@PathVariable Long postid, Principal principal, @RequestParam String postComment) {
-        Post post = postRepository.getOne(postid);
-        Comment comment = new Comment();
-        comment.setCommentText(postComment);
-        comment.setPost(post);
-        comment.setUsername(userRepository.findByUsername(principal.getName()).getName());
-        comment.setTime(LocalDateTime.now());
-        commentRepository.save(comment);
+        
+        if (!postComment.isEmpty()) {
+            Post post = postRepository.getOne(postid);
+            Comment comment = new Comment();
+            comment.setCommentText(postComment);
+            comment.setPost(post);
+            comment.setUsername(userRepository.findByUsername(principal.getName()).getName());
+            comment.setTime(LocalDateTime.now());
+            commentRepository.save(comment);
+        }
         return "redirect:/frontpage";
     }
 }
