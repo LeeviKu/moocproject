@@ -33,4 +33,5 @@ build/
 .vscode/
 
 ###spring boot###
-.db
+database.mv.db
+database.trace.db
