@@ -5,4 +5,4 @@ You can search users and send friend requests on friends tab.
 ![alt text](https://i.imgur.com/C9IgAoR.png)
 You can also add a profile picture and add skills to your profile on profile tab.
 Your friends can also like your skills.
-![alt text](https://i.imgur.com/2h4WoQ4.png)
+![alt text](https://i.imgur.com/xxpe6MM.png)
