@@ -1,4 +1,5 @@
-link to the site: http://moocproject.herokuapp.com/
+Social media site.  
+link to the site: http://moocproject.herokuapp.com/  
 After creating an account and logging in you can post new posts which your friends can see and like/comment on.
 ![alt text](https://i.imgur.com/vbTOpHu.png)
 You can search users and send friend requests on friends tab.
