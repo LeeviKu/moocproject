@@ -1,5 +1,6 @@
 ## Social media site.  
 link to the site: http://moocproject.herokuapp.com/  
+Tech: Java, Spring, JPA, Thymeleaf, CSS
 ### After creating an account and logging in you can post new posts which your friends can see and like/comment on.
 ![alt text](https://i.imgur.com/vbTOpHu.png)  
 ### You can search users and send friend requests on friends tab.
